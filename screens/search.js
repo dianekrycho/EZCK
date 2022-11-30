@@ -1,13 +1,30 @@
 import React, {useState} from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
+import { View, Text, Image,TextInput, onChangeText, Button, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native';
 
 
 const SearchScreen = ({navigation}) => {
+    const [text, onChangeText] = React.useState("Rechercher une recette");
+
     return (
-      <View style={styles.container}>
-        <DropDownMenu/>
-        <Text> search page with filter</Text>
-      </View>
+        <View style={styles.container}>
+            <View style={styles.container}>
+                <View style={styles.search}>
+                    <Image source={require('../bottomTabsIcon/search.png')}
+                           resizeMode='contain'
+                           style={styles.icon}/>
+                    <TextInput onChangeText={onChangeText} value={text}/>
+                </View>
+            </View>
+            <View>
+              <View>
+                <DropDownMenu/>
+                <Text> search page with filter</Text>
+              </View>
+              <View>
+
+              </View>
+            </View>
+        </View>
     );
 };
 
@@ -72,9 +89,8 @@ const DropDownMenu = ()=>{
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'flex-start'
   },
   option:{
     alignItems:'flex-start',
@@ -91,4 +107,18 @@ const styles = StyleSheet.create({
     paddingHorizontal:20,
     marginHorizontal:20,
   },
+    search:{
+        borderWidth:1,
+        width:350,
+        padding:10,
+        justifyContent: 'left',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop:120,
+    },
+    icon: {
+        marginRight:5,
+        width:15,
+        height:15,
+    },
 });

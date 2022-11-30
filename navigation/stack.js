@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "../screens/home";
+import CategoryScreen from "../screens/category";
 import SearchScreen from "../screens/search";
 import MyProfileScreen from "../screens/myProfile";
 import FavoriteScreen from "../screens/favorite";
@@ -43,6 +44,14 @@ const HomeStackScreen = ({navigation}) => {
                     headerTintColor:"#1134A6",
                     headerStyle:{backgroundColor:"#73C2FB"},
                 }}
+            />
+            <HomeStack.Screen
+                name="categories"
+                component={CategoryScreen}
+                getId={({ params }) => params.id}
+                options={({route, navigation}) => ({
+                    title: route.params.name,
+                })}
             />
             <HomeStack.Screen
                 name='Settings'
