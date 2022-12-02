@@ -42,12 +42,12 @@ const HomeScreen = ({navigation}) => {
                 numColumns={1}
                 renderItem={({item}) => (
                     <View style={styles.home}>
-                        <TouchableOpacity onPress={()=>navigation.navigate('categories', {nom: item.strCategory, image: item.strCategoryThumb, description: item.strCategoryDescription})}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('categories', {nom: item.strCategory, image: item.strCategoryThumb})}>
                             <Text style={styles.text}> {item.strCategory} </Text>
+
                         </TouchableOpacity>
                     </View>
                 )}
-
             />
         </View>
       </View>

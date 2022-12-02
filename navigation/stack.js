@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "../screens/home";
 import CategoryScreen from "../screens/category";
+import MealDetailsScreen from "../screens/mealDetails";
 import SearchScreen from "../screens/search";
 import MyProfileScreen from "../screens/myProfile";
 import FavoriteScreen from "../screens/favorite";
@@ -48,6 +49,14 @@ const HomeStackScreen = ({navigation}) => {
             <HomeStack.Screen
                 name="categories"
                 component={CategoryScreen}
+                getId={({ params }) => params.id}
+                options={({route, navigation}) => ({
+                    title: route.params.name,
+                })}
+            />
+            <HomeStack.Screen
+                name="mealDetails"
+                component={MealDetailsScreen}
                 getId={({ params }) => params.id}
                 options={({route, navigation}) => ({
                     title: route.params.name,

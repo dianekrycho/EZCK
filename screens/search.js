@@ -16,13 +16,7 @@ const SearchScreen = ({navigation}) => {
                 </View>
             </View>
             <View>
-              <View>
-                <DropDownMenu/>
-                <Text> search page with filter</Text>
-              </View>
-              <View>
 
-              </View>
             </View>
         </View>
     );
@@ -30,66 +24,12 @@ const SearchScreen = ({navigation}) => {
 
 export default SearchScreen;
 
-const Options = ['a', 'b', 'c'];
 
-const ModalPicker=(props)=>{
-
-  const onPressItem=(option)=>{
-    props.changeModalVisibility(false);
-    props.setData(option);
-  }
-  
-  const option = Options.map((item, index)=>{
-    return (
-      <TouchableOpacity key={index} onPress={()=>onPressItem(item)} style={styles.option}>
-        <Text style={styles.text}>{item}</Text>
-      </TouchableOpacity>
-    )
-  })
-  
-  return(
-    <TouchableOpacity onPress={()=>props.changeModalVisibility(false)} style={styles.container}>
-      <View style={styles.container}>
-        <ScrollView>
-          {option}
-        </ScrollView>
-      </View>
-    </TouchableOpacity>
-  )
-}
-
-const DropDownMenu = ()=>{
-  const [chooseData, setchooseData] = useState('Select Item...');
-  const [isModalVisible, setisModalVisible]=useState(false);
-
-  const changeModalVisibility = (bool)=>{
-    setisModalVisible(bool)
-  }
-
-  const setData = (option) => {
-    setchooseData(option)
-  }
-
-  return(
-    <View style={styles.containers}>
-      <TouchableOpacity onPress={()=>changeModalVisibility(true)}>
-        <Text style={styles.text}> {chooseData} </Text>
-      </TouchableOpacity>
-      <Modal
-        transparent={true}
-        animationType='fade'
-        visible={isModalVisible}
-        nRequestClose={()=> changeModalVisibility(false)}
-      >
-        <ModalPicker changeModalVisibility={changeModalVisibility} setData={setData}/>
-      </Modal>
-    </View>
-  )
-}
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center', 
+      flexDirection:'column',
+    alignItems: 'center',
     justifyContent: 'flex-start'
   },
   option:{
