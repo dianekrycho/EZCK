@@ -61,8 +61,18 @@ const MealDetailsScreen = ({navigation, route}) => {
                 <View>
                     {data.meals && data.meals.map((item)=>
                         <View>
-                            <Text> instructions </Text>
-                            <Text>{item.strInstructions}</Text>
+                            <View>
+                                <Text> instructions </Text>
+                                <Text>{item.strInstructions}</Text>
+                            </View>
+                            <View>
+                                <Text> Youtube video </Text>
+                                <Text>{item.strYoutube}</Text>
+                            </View>
+                            <View>
+                                <Text> Recipe source </Text>
+                                <Text>{item.strSource}</Text>
+                            </View>
                         </View>
                     )}
                 </View>
