@@ -42,7 +42,7 @@ const MealDetailsScreen = ({navigation, route}) => {
                 <View>
                     {data.meals && data.meals.map((item)=>
                         <View>
-                            <Text> ingredients </Text>
+                            <Text>Ingredients </Text>
                             <Text>{item.strIngredient1}     {item.strMeasure1}</Text>
                             <Text>{item.strIngredient2}     {item.strMeasure2}</Text>
                             <Text>{item.strIngredient3}     {item.strMeasure3}</Text>

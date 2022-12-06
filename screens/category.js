@@ -37,7 +37,7 @@ const CategoryScreen = ({navigation, route}) => {
                 renderItem={({item}) => (
                     <View style={styles.home}>
                         <TouchableOpacity onPress={()=>navigation.navigate('mealDetails', {nom: item.strMeal, image: item.strMealThumb})}>
-                            <Text style={styles.text}> {item.strMeal} </Text>
+                            <Text> {item.strMeal} </Text>
                         </TouchableOpacity>
                     </View>
                 )}
@@ -61,5 +61,11 @@ const styles = StyleSheet.create({
 
         fontSize:20,
         fontWeight:'bold'
+    },
+    home:{
+        padding:10,
+        borderWidth:1,
+        borderRadius:15,
+        margin:3,
     },
 });
