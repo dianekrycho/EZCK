@@ -12,15 +12,16 @@ const User = [
   },
 ]
 
+
 const MyProfileScreen = ({navigation}) => {
   return (
       <FlatList
           data={User}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item._id}
           renderItem={({item}) => (
-          <View style={styles.container}>
-            <View >
-              <Image source={item.image} resizeMode='contain' style={styles.icon}/>
+          <View style={styles.container} key="{item}">
+            <View style={styles.icon}>
+              <Image source={item.image} resizeMode='contain' style={styles.image}/>
             </View>
             <View style={styles.profil}>
               <Text style={styles.title}> My informations :</Text>
@@ -73,6 +74,12 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderRadius:100,
     padding:10,
+    alignItems:'center',
+  },
+  image:{
+    width:150,
+    height:150,
+
   },
   button:{
     width:100,

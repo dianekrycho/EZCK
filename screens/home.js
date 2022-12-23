@@ -34,17 +34,21 @@ const HomeScreen = ({navigation}) => {
 
   return (
       <View style={styles.container}>
+          <View >
+              <Text style={styles.title} > Food categories : </Text>
+          </View>
         <View>
             <FlatList
                 data={data.categories}
                 keyExtractor={item=>item.idCategory}
                 horizontal={false}
                 numColumns={1}
+                style={{width: 340, marginBottom:120}}
                 renderItem={({item}) => (
                     <View style={styles.home}>
-                        <TouchableOpacity onPress={()=>navigation.navigate('categories', {nom: item.strCategory, image: item.strCategoryThumb})}>
-                            <Text style={styles.text}> {item.strCategory} </Text>
-
+                        <TouchableOpacity style={styles.thumbnail} onPress={()=>navigation.navigate('categories', {nom: item.strCategory, image: item.strCategoryThumb})}>
+                            <Image source={{uri :item.strCategoryThumb}} style={{width: 40, height: 40}} />
+                            <Text style={styles.text}>       {item.strCategory} </Text>
                         </TouchableOpacity>
                     </View>
                 )}
@@ -59,19 +63,13 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     //flex: 1,
-    alignItems: 'center',
+      marginTop : 20,
+      marginLeft : 20,
+    alignItems: 'left',
     //justifyContent: 'flex-start',
       flexDirection:'column',
+
   },
-    search:{
-        borderWidth:1,
-        width:350,
-        padding:10,
-        justifyContent: 'left',
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop:120,
-    },
     icon: {
         marginRight:5,
         width:15,
@@ -83,4 +81,18 @@ const styles = StyleSheet.create({
         borderRadius:15,
         margin:3,
     },
+    title:{
+        color: "#20232a",
+        textAlign: "center",
+        fontSize: 30,
+        fontWeight: "bold",
+        marginBottom : 20,
+    },
+    thumbnail:{
+      flexDirection: 'row',
+        alignItems:'center'
+    },
+    text:{
+      fontSize:20,
+    }
 });

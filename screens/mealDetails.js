@@ -32,45 +32,38 @@ const MealDetailsScreen = ({navigation, route}) => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <View>
+                <View style={{alignItems:'center'}}>
                     <Text style={styles.text}> {nom}  </Text>
-                    <Image/>
-                </View>
-                <View>
-                    <Text style={styles.text2}>   </Text>
+                    <Image source={{uri :image}} style={{width: 200, height: 200, borderWidth:1, borderRadius:15}}/>
                 </View>
                 <View>
                     {data.meals && data.meals.map((item)=>
-                        <View>
-                            <Text>Ingredients </Text>
-                            <Text>{item.strIngredient1}     {item.strMeasure1}</Text>
-                            <Text>{item.strIngredient2}     {item.strMeasure2}</Text>
-                            <Text>{item.strIngredient3}     {item.strMeasure3}</Text>
-                            <Text>{item.strIngredient4}     {item.strMeasure4}</Text>
-                            <Text>{item.strIngredient5}     {item.strMeasure5}</Text>
-                            <Text>{item.strIngredient6}     {item.strMeasure6}</Text>
-                            <Text>{item.strIngredient7}     {item.strMeasure7}</Text>
-                            <Text>{item.strIngredient8}     {item.strMeasure8}</Text>
-                            <Text>{item.strIngredient9}     {item.strMeasure9}</Text>
-                            <Text>{item.strIngredient10}    {item.strMeasure10}</Text>
-                            <Text>{item.strIngredient11}    {item.strMeasure11}</Text>
-                            <Text>{item.strIngredient12}    {item.strMeasure12}</Text>
-                        </View>
-                    )}
-                </View>
-                <View>
-                    {data.meals && data.meals.map((item)=>
-                        <View>
+                        <View key="{item}">
                             <View>
-                                <Text> instructions </Text>
+                                <Text style={styles.title}>Ingredients </Text>
+                                <Text>{item.strIngredient1}     {item.strMeasure1}</Text>
+                                <Text>{item.strIngredient2}     {item.strMeasure2}</Text>
+                                <Text>{item.strIngredient3}     {item.strMeasure3}</Text>
+                                <Text>{item.strIngredient4}     {item.strMeasure4}</Text>
+                                <Text>{item.strIngredient5}     {item.strMeasure5}</Text>
+                                <Text>{item.strIngredient6}     {item.strMeasure6}</Text>
+                                <Text>{item.strIngredient7}     {item.strMeasure7}</Text>
+                                <Text>{item.strIngredient8}     {item.strMeasure8}</Text>
+                                <Text>{item.strIngredient9}     {item.strMeasure9}</Text>
+                                <Text>{item.strIngredient10}    {item.strMeasure10}</Text>
+                                <Text>{item.strIngredient11}    {item.strMeasure11}</Text>
+                                <Text>{item.strIngredient12}    {item.strMeasure12}</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.title}>Instructions </Text>
                                 <Text>{item.strInstructions}</Text>
                             </View>
                             <View>
-                                <Text> Youtube video </Text>
+                                <Text style={styles.title}>Youtube video </Text>
                                 <Text>{item.strYoutube}</Text>
                             </View>
                             <View>
-                                <Text> Recipe source </Text>
+                                <Text style={styles.title}>Recipe source </Text>
                                 <Text>{item.strSource}</Text>
                             </View>
                         </View>
@@ -88,16 +81,26 @@ export default MealDetailsScreen;
 
 const styles = StyleSheet.create({
     container: {
-        margin:15,
+        margin:20,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection:'column'
     },
     text:{
-        fontSize:20,
-        fontWeight:'bold'
+        fontSize:25,
+        fontWeight:'bold',
+        textAlign: "center",
+        marginBottom:10,
     },
     text2:{
         fontSize:15,
+    },
+    title:{
+        color: "#20232a",
+        textAlign: "left",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginTop : 20,
+        marginBottom : 10,
     },
 });

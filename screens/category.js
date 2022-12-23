@@ -34,9 +34,11 @@ const CategoryScreen = ({navigation, route}) => {
                 keyExtractor={item=>item.idMeal}
                 horizontal={false}
                 numColumns={1}
+                style={{width: 340,}}
                 renderItem={({item}) => (
                     <View style={styles.home}>
-                        <TouchableOpacity onPress={()=>navigation.navigate('mealDetails', {nom: item.strMeal, image: item.strMealThumb})}>
+                        <TouchableOpacity style={styles.thumbnail} onPress={()=>navigation.navigate('mealDetails', {nom: item.strMeal, image: item.strMealThumb})}>
+                            <Image source={{uri :item.strMealThumb}} style={{width: 40, height: 40, borderWidth:1, borderRadius:15}} />
                             <Text> {item.strMeal} </Text>
                         </TouchableOpacity>
                     </View>
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
         margin:15,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection:'column'
+        flexDirection:'column',
     },
     text:{
 
@@ -67,5 +69,9 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderRadius:15,
         margin:3,
+    },
+    thumbnail:{
+        flexDirection: 'row',
+        alignItems:'center'
     },
 });
