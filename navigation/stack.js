@@ -105,6 +105,14 @@ const SearchStackScreen = ({navigation})=>{
                 }}
             />
             <SearchStack.Screen
+                name="mealDetails"
+                component={MealDetailsScreen}
+                getId={({ params }) => params.id}
+                options={({route, navigation}) => ({
+                    title: route.params.name,
+                })}
+            />
+            <SearchStack.Screen
                 name='Settings'
                 component={SettingsScreen}
             />
@@ -185,6 +193,14 @@ const FavoriteStackScreen = ({navigation}) => {
                     headerTintColor:"#1134A6",
                     headerStyle:{backgroundColor:"#73C2FB"}
                 }}
+            />
+            <FavoriteStack.Screen
+                name="mealDetails"
+                component={MealDetailsScreen}
+                getId={({ params }) => params.id}
+                options={({route, navigation}) => ({
+                    title: route.params.name,
+                })}
             />
             <FavoriteStack.Screen
                 name='Settings'
