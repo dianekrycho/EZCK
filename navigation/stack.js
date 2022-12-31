@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 // import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+
 import HomeScreen from "../screens/home";
 import CategoryScreen from "../screens/category";
 import MealDetailsScreen from "../screens/mealDetails";
@@ -13,8 +14,8 @@ import FavoriteScreen from "../screens/favorite";
 import SettingsScreen from "../screens/settings"
 
 
-const HomeStack = createStackNavigator()
 
+const HomeStack = createStackNavigator()
 const HomeStackScreen = ({navigation}) => {
     return (
         <HomeStack.Navigator>
@@ -69,12 +70,9 @@ const HomeStackScreen = ({navigation}) => {
         </HomeStack.Navigator>
     )
 };
-
 export {HomeStackScreen}
 
-
 const SearchStack = createStackNavigator();
-
 const SearchStackScreen = ({navigation})=>{
     return(
         <SearchStack.Navigator>
@@ -113,11 +111,9 @@ const SearchStackScreen = ({navigation})=>{
         </SearchStack.Navigator>
     )
 };
-
 export {SearchStackScreen};
 
 const MyProfileStack = createStackNavigator()
-
 const MyProfileStackScreen = ({navigation}) => {
     return(
         <MyProfileStack.Navigator>
@@ -156,11 +152,9 @@ const MyProfileStackScreen = ({navigation}) => {
         </MyProfileStack.Navigator>
     )
 }
-
 export {MyProfileStackScreen};
 
 const FavoriteStack = createStackNavigator()
-
 const FavoriteStackScreen = ({navigation}) => {
     return(
         <FavoriteStack.Navigator>
@@ -199,11 +193,10 @@ const FavoriteStackScreen = ({navigation}) => {
         </FavoriteStack.Navigator>
     )
 }
-
 export {FavoriteStackScreen};
 
 
-const SettingsStack = createStackNavigator()
+//const SettingsStack = createStackNavigator()
 
 
 const styles = StyleSheet.create({
