@@ -6,7 +6,7 @@ const CategoryScreen = ({navigation, route}) => {
     const { nom, image} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-    console.log(data);
+    //console.log(data);
     const options = {
         method: 'GET',
         headers: {

@@ -18,12 +18,10 @@ import LoginScreen from "./screens/LoginScreen";
 const Drawer = createDrawerNavigator();
 const AppStack = () => {
     return (
-        <NavigationContainer>
-            <Drawer.Navigator screenOptions={{ headerShown: false }}>
-                <Drawer.Screen name="App" component={Tabs} />
-                <Drawer.Screen name="About" component={AboutScreen} />
-            </Drawer.Navigator>
-        </NavigationContainer>
+        <Drawer.Navigator screenOptions={{ headerShown: false }}>
+            <Drawer.Screen name="App" component={Tabs} />
+            <Drawer.Screen name="About" component={AboutScreen} />
+        </Drawer.Navigator>
     );
 }
 
