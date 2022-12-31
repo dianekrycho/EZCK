@@ -17,7 +17,7 @@ export const Login = (username, password) => {
   return async dispatch => {
     let token = null;
     if (username === 'diane' && password == 'diane') {
-      token = username + password;
+      token = username + "+" + password;
       // here we can use login api to get token and then store it
       await AsyncStorage.setItem('token', token);
       console.log('token stored');

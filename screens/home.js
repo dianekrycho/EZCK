@@ -16,7 +16,7 @@ import {
 const HomeScreen = ({navigation}) => {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-    console.log(data);
+    //console.log(data);
     const options = {
         method: 'GET',
         headers: {
