@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Button, StyleSheet, SafeAreaView, StatusBar, Image, TouchableOpacity, FlatList, ScrollView} from 'react-native';
+import {Login} from "../store/actions";
 
 
 const MealDetailsScreen = ({navigation, route}) => {
@@ -21,14 +22,12 @@ const MealDetailsScreen = ({navigation, route}) => {
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
     }, []);
-    /*
-    const ingredients = []
-    while(data.meals.strIngrdient + i !== null){
-        ingredients.add(data.meals.strIngrdient + i)
-        i++
-    }
-     */
-    //console.log(ingredients)
+
+    const addFavorite = () => {
+        navigation.navigate('mealDetails', {nom: item.strMeal, image: item.strMealThumb})
+
+    };
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -39,6 +38,10 @@ const MealDetailsScreen = ({navigation, route}) => {
                 <View>
                     {data.meals && data.meals.map((item)=>
                         <View key="{item}">
+                            <TouchableOpacity style={{marginTop:20, flexDirection:"row", alignItems:'center',backgroundColor:'#73C2FB', borderWidth:1, borderRadius:15}} onPress={()=>addFavorite()}>
+                                <Image source={require('../bottomTabsIcon/heart.png')} style={{width: 40, height: 40}} />
+                                <Text>Add to favorite  </Text>
+                            </TouchableOpacity>
                             <View>
                                 <Text style={styles.title}>Ingredients </Text>
                                 <Text>{item.strIngredient1}     {item.strMeasure1}</Text>
@@ -70,10 +73,9 @@ const MealDetailsScreen = ({navigation, route}) => {
                     )}
                 </View>
             </ScrollView>
-
         </View>
-    );
-};
+    )
+}
 
 export default MealDetailsScreen;
 
