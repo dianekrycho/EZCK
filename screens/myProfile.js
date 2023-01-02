@@ -1,52 +1,35 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, StatusBar, FlatList, TouchableOpacity, Image } from 'react-native';
 import {Logout} from "../store/actions";
-import { useDispatch } from 'react-redux';
-
-const User = [
-  {
-    id: '1',
-    image: require('../bottomTabsIcon/profile.png'),
-    email:"micheline.martin@gmail.com",
-    gender:'Women',
-    name:"Micheline",
-    allergies:"peanuts"
-  },
-]
-
+import {useDispatch, useSelector} from 'react-redux';
 
 const MyProfileScreen = ({navigation}) => {
+  const token = useSelector(state => state.Reducers.authToken);
+  const userInfo = token.split("+")
+  console.log(userInfo[0]+'  '+userInfo[1])
   const dispatch = useDispatch();
   const submit = () => {
     dispatch(Logout())
   }
   return (
-      <View>
-        <FlatList
-            data={User}
-            keyExtractor={item => item._id}
-            renderItem={({item}) => (
-            <View style={styles.container} key="{item}">
-              <View style={styles.icon}>
-                <Image source={item.image} resizeMode='contain' style={styles.image}/>
-              </View>
-              <View style={styles.profil}>
-                <Text style={styles.title}> My informations :</Text>
-                <Text> Username : {item.name} </Text>
-                <Text> Email : {item.email} </Text>
-                <Text> Allergies : {item.allergies} </Text>
-              </View>
-              <Button
-                  //mode="contained"
-                  color='blue'
-                  //style={{ marginTop: 20 }}
-                  onPress={submit}
-                  title='Log Out'
-              />
-            </View>
-            )}
-        />
-
+      <View style={styles.container} key="{item}">
+        <View style={styles.icon}>
+          <Image source={require('../bottomTabsIcon/profile.png')} resizeMode='contain' style={styles.image}/>
+        </View>
+        <View style={styles.profil}>
+          <Text style={styles.title}> My informations :</Text>
+          <Text> Username : {userInfo[0]} </Text>
+          <Text> Email :  {userInfo[0]}@gmail.com </Text>
+          <Text> Allergies : none </Text>
+        </View>
+        <View style={styles.profil}>
+          <Button
+              mode="contained"
+              color='black'
+              onPress={submit}
+              title='Log Out'
+          />
+        </View>
       </View>
   );
 };
@@ -77,7 +60,7 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     justifyContent: 'center',
     margin:30,
-    marginBottom:300,
+    //marginBottom:300,
     padding:15,
     backgroundColor:'#bde2fd',
     resizeMode:'contain',
@@ -96,9 +79,5 @@ const styles = StyleSheet.create({
     width:150,
     height:150,
 
-  },
-  button:{
-    width:100,
-    height:100,
   },
 });

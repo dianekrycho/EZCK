@@ -14,7 +14,7 @@ export default function LoginScreen() {
     }
     return (
         <View style={styles.container}>
-            <Image style={StyleSheet.absoluteFillObject} source={require('../bottomTabsIcon/logo2.png')} blurRadius={10} />
+            <Image style={StyleSheet.absoluteFillObject} source={require('../bottomTabsIcon/logo.png')} blurRadius={5} />
             <Text style={styles.title}>Login</Text>
             <Surface style={styles.box}>
                 <View>

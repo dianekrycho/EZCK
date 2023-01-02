@@ -46,7 +46,7 @@ const HomeScreen = ({navigation}) => {
                 style={{width: 340, marginBottom:120}}
                 renderItem={({item}) => (
                     <View style={styles.home}>
-                        <TouchableOpacity style={styles.thumbnail} onPress={()=>navigation.navigate('categories', {nom: item.strCategory, image: item.strCategoryThumb})}>
+                        <TouchableOpacity style={styles.thumbnail} onPress={()=>navigation.navigate('categories', {nom: item.strCategory})}>
                             <Image source={{uri :item.strCategoryThumb}} style={{width: 40, height: 40}} />
                             <Text style={styles.text}>       {item.strCategory} </Text>
                         </TouchableOpacity>

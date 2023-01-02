@@ -167,7 +167,7 @@ const FavoriteStackScreen = ({navigation}) => {
     return(
         <FavoriteStack.Navigator>
             <FavoriteStack.Screen
-                name=" "
+                name="favorite"
                 component={FavoriteScreen}
                 options={{
                     headerLeft: () =>(

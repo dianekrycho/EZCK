@@ -3,7 +3,7 @@ import {View, Text, Button, StyleSheet, SafeAreaView, StatusBar, Image, Touchabl
 
 
 const CategoryScreen = ({navigation, route}) => {
-    const { nom, image} = route.params;
+    const { nom } = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     //console.log(data);

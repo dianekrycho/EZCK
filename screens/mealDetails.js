@@ -1,7 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button, StyleSheet, SafeAreaView, StatusBar, Image, TouchableOpacity, FlatList, ScrollView} from 'react-native';
-import {Login} from "../store/actions";
-
+import {
+    View,
+    Text,
+    Button,
+    StyleSheet,
+    SafeAreaView,
+    StatusBar,
+    Image,
+    TouchableOpacity,
+    FlatList,
+    ScrollView,
+    Alert
+} from 'react-native';
+import favorite from "../userDB/favoriteRecipe";
 
 const MealDetailsScreen = ({navigation, route}) => {
     const { nom, image} = route.params;
@@ -23,9 +34,29 @@ const MealDetailsScreen = ({navigation, route}) => {
             .finally(() => setLoading(false));
     }, []);
 
-    const addFavorite = () => {
-        navigation.navigate('mealDetails', {nom: item.strMeal, image: item.strMealThumb})
 
+    const addFavorite = () => {
+        if(favorite.map((item) => item.name).includes(nom)){
+            Alert.alert(
+                "favorite alert",
+                "This recipe is already in your favorite list !!",
+                [
+                    {
+                        text: "go to favorite",
+                        onPress: () => navigation.navigate('favoriteTab', {
+                            screen: 'favorite'
+                        })
+                    },
+                    { text: "OK", onPress: () => console.log("OK Pressed") }
+                ]
+            );
+        }
+        else{
+            navigation.navigate('favoriteTab', {
+                screen: 'favorite',
+                params: { strMeal: nom, strMealThumb: image },
+            })
+        }
     };
 
     return (
