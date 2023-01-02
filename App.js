@@ -3,7 +3,6 @@ import 'react-native-gesture-handler'
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar, View } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { ActivityIndicator } from 'react-native-paper';
@@ -14,6 +13,11 @@ import { Init } from './store/actions';
 import Tabs from "./navigation/tab";
 import AboutScreen from "./screens/about.js";
 import LoginScreen from "./screens/LoginScreen";
+
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
 
 const Drawer = createDrawerNavigator();
 const AppStack = () => {
