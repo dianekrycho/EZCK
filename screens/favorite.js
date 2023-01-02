@@ -1,23 +1,51 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Button, StyleSheet, TouchableOpacity, Image, FlatList,} from 'react-native';
-import favorite from "../userDB/favoriteRecipe";
-//favorite = extract list of favorite meal from db
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from '@react-navigation/native';
 
 const FavoriteScreen = ({navigation}) => {
+    const [data, setData] = useState([]);
+    const fetchAllFav = async () => {
+        try {
+            const result = [];
+            const keys = await AsyncStorage.getAllKeys();
+            for (const key of keys) {
+                if(key!="token"){
+                    await AsyncStorage.getItem(key)
+                        .then(req => JSON.parse(req))
+                        .then(json => result.push(json))
+                }
+            }
+            console.log("result : " +JSON.stringify(result))
+            setData(result)
+        } catch (error) {
+            console.log(error, "probleme")
+        }
+    }
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchAllFav()
+        }, [data])
+    );
+    /*
+    useEffect(() => {
+        fetchAllFav()
+    }, []);*/
+
+    //fetchAllFav()
     return (
       <View style={styles.container}>
           <FlatList
-              data={favorite}
-              keyExtractor={item=>item.id}
+              data={data}
+              keyExtractor={item=>item.nom}
               horizontal={false}
               numColumns={1}
-              style={{width: 340,}}
+              style={{width: 340}}
               renderItem={({item}) => (
                   <View style={styles.home}>
-                      <TouchableOpacity style={styles.thumbnail} onPress={()=>navigation.navigate('mealDetails', {nom: item.name, image: item.image})}>
+                      <TouchableOpacity style={styles.thumbnail} onPress={()=>navigation.navigate('mealDetails', {nom: item.nom, image: item.image})}>
                           <Image source={{uri :item.image}} style={{width: 40, height: 40, borderWidth:1, borderRadius:15}} />
-                          <Text> {item.name} </Text>
+                          <Text> {item.nom} </Text>
                       </TouchableOpacity>
                   </View>
               )}

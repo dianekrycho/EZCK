@@ -2,23 +2,23 @@ import React, {useEffect, useState} from 'react';
 import {
     View,
     Text,
-    Button,
     StyleSheet,
-    SafeAreaView,
-    StatusBar,
     Image,
     TouchableOpacity,
-    FlatList,
-    ScrollView,
-    Alert
+    ScrollView, Alert,
 } from 'react-native';
-import favorite from "../userDB/favoriteRecipe";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const MealDetailsScreen = ({navigation, route}) => {
     const { nom, image} = route.params;
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
-    //console.log(data);
+    const [favNames, setFaveNames] = useState([]);
+    const favStorage =
+        {
+            "nom": nom,
+            "image": image
+        }
     const options = {
         method: 'GET',
         headers: {
@@ -34,9 +34,29 @@ const MealDetailsScreen = ({navigation, route}) => {
             .finally(() => setLoading(false));
     }, []);
 
+    const fetchFavNames = async () => {
+        try {
+            const result = [];
+            const keys = await AsyncStorage.getAllKeys();
+            for (const key of keys) {
+                if(key!="token"){
+                    await AsyncStorage.getItem(key)
+                        .then(req => JSON.parse(req))
+                        .then(json => result.push(json))
+                }
+            }
+            const names = result.map(a => a.nom);
+            console.log("noms: " + JSON.stringify(names))
+            setFaveNames(names)
+        } catch (error) {
+            console.log(error, "probleme")
+        }
+    }
 
-    const addFavorite = () => {
-        if(favorite.map((item) => item.name).includes(nom)){
+    async function addFavorite() {
+        fetchFavNames()
+        console.log("favnames : "+favNames)
+        if(favNames.includes(nom)){
             Alert.alert(
                 "favorite alert",
                 "This recipe is already in your favorite list !!",
@@ -56,6 +76,10 @@ const MealDetailsScreen = ({navigation, route}) => {
                 screen: 'favorite',
                 params: { strMeal: nom, strMealThumb: image },
             })
+            console.log(JSON.stringify(favStorage))
+            return await AsyncStorage.setItem('favorite'+Math.random(), JSON.stringify(favStorage))
+                .then(res => console.log('favorite added to storage'))
+                .catch(error => console.log('error!'));
         }
     };
 
